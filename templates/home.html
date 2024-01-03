@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+    <!-- Include Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<header class="flex items-center justify-between p-6 bg-white shadow-md">
+    <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+            <circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path>
+            <circle cx="17" cy="17" r="2"></circle>
+        </svg><h1 class="ml-3 text-xl font-semibold">Detection Vehicule</h1></div>
+        <nav><ul class="flex items-center space-x-3"><li>
+            <a class="text-base text-gray-600 hover:text-gray-800" href="#">
+            About</a></li><li>
+                <a class="text-base text-gray-600 hover:text-gray-800" href="#">Features</a>
+            </li><li><a class="text-base text-gray-600 hover:text-gray-800" href="#">Contact</a>
+            </li></ul></nav></header><main class="container mx-auto px-6 py-8">
+                <div class="border text-card-foreground mx-auto max-w-md bg-white shadow-lg rounded-md overflow-hidden" data-v0-t="card">
+                    <div class="flex flex-col space-y-1.5 p-6"><h2 class="text-2xl font-bold text-center">Car Plate Detection</h2></div>*
+                    <div class="p-6"><div class="space-y-4"><div class="flex flex-col items-center">
+                        <label class="block text-gray-700">Upload Car Plate Image</label><input class="mt-2" type="file">
+                    </div>
+                    <form action="/detect_objects" method="post">
+                        <input type="submit" value="Detect Objects" 
+                            class="inline-flex items-center justify-center text-sm font-medium ring-offset-background
+                                   transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+                                   focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 
+                                   w-full text-center bg-blue-500 text-white rounded hover:bg-blue-600">
+                    </form>
+                    
+                        <div class="flex justify-center items-center space-x-2"><div class="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">Detected Plate:</div><span>AB-123-CD</span></div></div></div></div></main><footer class="flex items-center justify-center p-6 bg-gray-100 mt-8"><div class="space-x-3"><a class="text-sm text-gray-600 hover:text-gray-800" href="#">Privacy Policy</a><a class="text-sm text-gray-600 hover:text-gray-800" href="#">Terms of Service</a></div></footer>
+<form action="/detect_objects" method="post">
+    <input type="submit" value="Detect Objects">
+</form>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Running Cr Animation - Easy Tutorials</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-0Cm1NlVsGw6KGl2pR6kgHz6rHR7Ner2otC+h9eje+J5BIMlKLQ9Ib07R8eCjc+CcnuZ0tlBZm5DwB+UG8f8iMA==" crossorigin="anonymous" />
+
+</head>
+<body>
+      <!-- Ajouter une section de connexion en haut de la page -->
+     
+    <div class="hero"> 
+      <div class="highway"> </div>
+      <div class="login-section">
+        <form action="/detect_objects" method="post">
+            <input type="submit" value="Detect Objects">
+        </form>
+    </div>
+    
+    
+      <div class="city"></div>
+
+<div class="car">
+    <img src="{{ url_for('static', filename='images/car.png') }}" alt="Example Image">
+</div>
+<div class="wheel">
+    <img src="{{ url_for('static', filename='images/wheel.png') }}"  class="back-wheel">
+    <img src="{{ url_for('static', filename='images/wheel.png') }}"  class="front-wheel">
+
+</div>
+    </div>
+  
+</body>
+</html>

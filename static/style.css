@@ -1,0 +1,145 @@
+*
+{
+margin: 0;
+padding:0;
+}
+.hero
+{
+    height: 100vh;
+    width: 100%;
+    background-image: url(sky.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-x: hidden;
+}
+.highway
+{
+    height: 200px;
+    width: 500%;
+    display: block;
+    background-image: url(road.jpg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-repeat: repeat-x ;
+    animation: highway 5s linear infinite;
+
+}
+@keyframes highway {
+100%{
+    transform: translateX(-3400px);
+}  
+}
+.city
+{
+    height: 250px;
+    width:500%;
+    background-image: url(city.png);
+    position: absolute;
+    bottom: 200px;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 1;
+    background-repeat: repeat-x;
+    animation: city 20s linear infinite;
+}
+@keyframes city {
+    100%{
+        transform: translateX(-1400px);
+    }
+    
+}
+.car
+{
+    width:400px;
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 2;
+}
+.car img
+{
+width: 100%;
+animation: car 1s linear infinite;
+}
+@keyframes car {
+    100%{
+        transform: translateX(-1px);
+    }
+    50%{
+        transform: translateY(1px);
+    }
+    0%{
+        transform: translateY(-1px);
+    }
+}
+.wheel
+{
+    left: 50%;
+    bottom: 178px;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 2;
+}
+.wheel img{
+    width: 72px;
+    height: 72px;
+    animation: wheel 1s linear infinite;
+}
+.back-wheel
+{
+left: -165px;
+position: absolute;
+}
+.front-wheel
+{
+    left: 80px;
+    position: absolute;
+}
+@keyframes wheel {
+    
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.login-section {
+    font-size: 30px; /* Ajustez la taille du texte et de l'icône */
+    color: #3498db; /* Utilisez une couleur bleue de votre choix */
+}
+
+.login-section button {
+    padding: 10px 20px; /* Ajustez la taille du bouton en ajoutant du rembourrage */
+    font-size: inherit; /* Héritez de la taille de la police définie pour la classe .login-section */
+    background-color: #3498db; /* Utilisez la même couleur bleue pour le fond du bouton */
+    color: #fff; /* Utilisez une couleur de texte claire pour le contraste */
+    border: none; /* Supprimez la bordure du bouton */
+    cursor: pointer; /* Changez le curseur pour indiquer qu'il s'agit d'un élément cliquable */
+}
+
+.login-section button:hover {
+    background-color: #2980b9; /* Ajustez la couleur lorsqu'on survole le bouton */
+}
+/* Ajoutez ces styles dans votre fichier style.css */
+/* Ajoutez ces styles dans votre fichier style.css */
+.login-section form input[type="submit"] {
+    font-size: 44px; /* Taille de police */
+    color: rgb(2, 2, 17); /* Couleur du texte */
+    background-color: #0ea0fb; /* Couleur de fond */
+    padding: 15px 30px; /* Remplissage du bouton */
+    border: 2px solid rgb(14, 14, 199); /* Bordure du bouton */
+    border-radius: 10px; /* Bordure arrondie */
+    cursor: pointer; /* Curseur au survol du bouton */
+    /* Ajoutez d'autres styles si nécessaire */
+}
+
+/* Changement de style au survol du bouton */
+.login-section form input[type="submit"]:hover {
+    background-color: rgb(14, 14, 199);
+    color: #fff;
+}

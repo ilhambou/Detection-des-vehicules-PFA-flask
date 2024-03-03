@@ -13,7 +13,7 @@ import uuid
 import pymysql
 import requests
 from flask_socketio import SocketIO  # Ajoutez cette ligne pour importer SocketIO
-
+from flask import session
 ###############################
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +24,7 @@ from flask_bcrypt import check_password_hash
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
+
 
 ##############################################################################
 
@@ -52,10 +53,14 @@ def login():
     if request.method == 'POST':
         user_name = request.form['user_name']
         password = request.form['password']
+        location = request.form['location'] 
         user = User.query.filter_by(user_name=user_name).first()
         if user and bcrypt.check_password_hash(user.user_password, password):
             login_user(user)
-            flash('Login successful!', 'success')
+            #flash('Login successful!', 'success')
+            session['location'] = location
+            flash(f'Login successful! Location: {location}', 'success')
+
             return redirect(url_for('dashboard'))
         else:
             flash('Login failed. Check your username and password.', 'danger')
@@ -139,8 +144,10 @@ def check_license_plate_in_database(license_plate_number):
         # Vérification des résultats
         if results:
             print(f"Le numéro de plaque d'immatriculation {license_plate_number} existe dans la base de données.")
+            return True
         else:
             print(f"Le numéro de plaque d'immatriculation {license_plate_number} n'existe pas dans la base de données.")
+            return False
 
     except Exception as e:
         print(f"Erreur lors de la vérification dans la base de données : {str(e)}")
@@ -150,7 +157,7 @@ def check_license_plate_in_database(license_plate_number):
         cursor.close()
         db_connection.close()
 
-@tf.function
+@tf.function  #compiler en un graphe tensorflow
 def detect_fn(image):
     image, shapes = detection_model.preprocess(image)
     prediction_dict = detection_model.predict(image, shapes)
@@ -201,14 +208,16 @@ def save_results(text, region, csv_filename, folder_path):
 
 
 #################Web Socke########################"
-@socketio.on('license_plate_detected')
+@socketio.on('license_plate_detected') # event
 def handle_license_plate_detection(data):
     plate_number = data.get('license_plate')
+    location = data.get('location')
 
     # Check if the license plate exists in the database
     if check_license_plate_in_database(plate_number):
         # Notify Angular through WebSocket
-        socketio.emit('notification', {'message': 'License plate found', 'license_plate': plate_number})
+        #socketio.emit('notification', {'message': 'License plate found', 'license_plate': plate_number})
+        socketio.emit('notification', {'message': f'License plate found at {location}', 'license_plate': plate_number})
 
 
 
@@ -252,9 +261,12 @@ def detect_objects_route():
         
           # Check if the license plate exists in the database
                 if text:
+                    
                     for plate_number in text:
-                        check_license_plate_in_database(plate_number)
-                        socketio.emit('notification', {'message': 'License plate  wal9inahaaaaa', 'license_plate': plate_number})
+                        if check_license_plate_in_database(plate_number):
+                            location = session.get('location', 'unknown')
+                            socketio.emit('notification', {'message': f'License plate found at {location}', 'license_plate': plate_number})
+
 
 
             except Exception as e:
